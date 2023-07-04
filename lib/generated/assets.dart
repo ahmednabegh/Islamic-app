@@ -116,11 +116,17 @@ class Assets {
   static const String files97 = 'assets/files/97.txt';
   static const String files98 = 'assets/files/98.txt';
   static const String files99 = 'assets/files/99.txt';
+  static const String filesAhadeth  = 'assets/files/ahadeth .txt';
+  static const String imagesBody of seb7a = 'assets/images/body of seb7a.png';
+  static const String imagesHadithLogoImage = 'assets/images/hadith_logo_image.png';
+  static const String imagesHead of seb7a = 'assets/images/head of seb7a.png';
   static const String imagesIconHadith = 'assets/images/icon_hadith.png';
   static const String imagesIconQuran = 'assets/images/icon_quran.png';
   static const String imagesIconRadio = 'assets/images/icon_radio.png';
   static const String imagesIconSebha = 'assets/images/icon_sebha.png';
   static const String imagesMainBackground = 'assets/images/main_background.png';
+  static const String imagesMainBackgroundDark = 'assets/images/main_background_dark.png';
   static const String imagesQuranHeaderImage = 'assets/images/quran_header_image.png';
+  static const String imagesRadioPhoto = 'assets/images/radio_photo.png';
 
 }

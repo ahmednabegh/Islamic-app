@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/home/quran/sura_name.dart';
+import 'package:islami_app/home/quran/item_sura_name.dart';
 import 'package:islami_app/my_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class QuranTab extends StatelessWidget {
 List<String>names=["الفاتحه","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود"
@@ -16,18 +19,26 @@ List<String>names=["الفاتحه","البقرة","آل عمران","النسا
 
   @override
   Widget build(BuildContext context) {
+    var provider =Provider.of<AppConfigProvider>(context);
     return Center(
         child: Column(
           children: [
             Image.asset('assets/images/quran_header_image.png'),
             Divider(
-              color: MyThemeData.lightPrimary,
+
+              color:
+              provider.isDarkMode() ?
+                  MyThemeData.colorYellow:
+              MyThemeData.lightPrimary,
               thickness: 2,
             ),
-            Text('sura Name',
+            Text(AppLocalizations.of(context)!.sura_name,
             style: Theme.of(context).textTheme.headline2,),
             Divider(
-              color: MyThemeData.lightPrimary,
+              color:
+              provider.isDarkMode() ?
+              MyThemeData.colorYellow:
+              MyThemeData.lightPrimary,
               thickness: 2,
             ),
             Expanded(
@@ -39,7 +50,7 @@ List<String>names=["الفاتحه","البقرة","آل عمران","النسا
                   );
                 },
               itemBuilder:(context,index){
-                return SuraName(name: names[index],index: index);
+                return ItemSuraName(name: names[index],index: index);
               },
 itemCount: names.length,
               ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MyThemeData {
+  static Color darkPrimary = Color(0xFF141A2E);
+
   static Color lightPrimary = Color(0xFFB7935F);
   static Color colorBlack = Color(0xFF242424);
   static Color colorWhite = Color(0xFFF8F8F8);
-static ThemeData lightTheme = ThemeData(
+  static Color colorYellow = Color(0xFFFACC1D);
+
+  static ThemeData lightTheme = ThemeData(
   primaryColor: lightPrimary,
   scaffoldBackgroundColor: Colors.transparent,
 appBarTheme: AppBarTheme(
@@ -38,7 +42,42 @@ bottomNavigationBarTheme: BottomNavigationBarThemeData(
       fontSize: 25,
       fontWeight: FontWeight.w500,
     ),
+    headline3: TextStyle(
+      color: MyThemeData.lightPrimary,
+      fontSize: 25,
+      fontWeight: FontWeight.w600,
   ),
+));
+static ThemeData darkTheme = ThemeData(
+primaryColor: darkPrimary,
+  scaffoldBackgroundColor: Colors.transparent,
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    centerTitle: true,
+    iconTheme: IconThemeData(color: colorWhite),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor:colorYellow,
+    unselectedItemColor: colorWhite,
+    showSelectedLabels: true,
+  ),
+  textTheme: TextTheme(
+    headline1: TextStyle(
+      color: colorWhite,fontSize: 30,fontWeight: FontWeight.bold
+    ),
+    headline2: TextStyle(
+        color: colorWhite,fontSize: 25,fontWeight: FontWeight.w400
+    ),
+    headline3: TextStyle(
+        color: colorWhite,fontSize: 25,fontWeight: FontWeight.w600
+
+    ),
+    subtitle1: TextStyle(
+        color: colorWhite,fontSize: 25,fontWeight: FontWeight.w500
+    ),
+
+
+  )
 );
-static ThemeData darkTheme = ThemeData();
 }

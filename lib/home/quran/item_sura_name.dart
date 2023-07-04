@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/home/quran/sura_details_screen.dart';
+import 'package:islami_app/my_theme.dart';
 
-class SuraName extends StatelessWidget {
+class ItemSuraName extends StatelessWidget {
 String name ;
 int index ;
-SuraName({required this.name,required this.index});
+ItemSuraName({required this.name,required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ SuraName({required this.name,required this.index});
 
       },
       child: Text(name,
-        style:Theme.of(context).textTheme.subtitle1,
-      textAlign: TextAlign.center,
+        style:Theme.of(context).textTheme.subtitle1
+        ,      textAlign: TextAlign.center,
       ),
     );
   }

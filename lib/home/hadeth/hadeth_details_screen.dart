@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_app/home/hadeth/hadith_tab.dart';
+import 'package:islami_app/home/hadeth/item_hadeth_details.dart';
 import 'package:islami_app/home/quran/item_sura_details.dart';
 import 'package:islami_app/my_theme.dart';
 import 'package:islami_app/providers/app_config_provider.dart';
 import 'package:provider/provider.dart';
 
-class SuraDetailsScreen extends StatefulWidget {
-  static const String routeName = 'sura_details';
+class HadethDetailsScreen extends StatefulWidget {
+  static const String routeName = 'hadeth_details';
 
   @override
-  State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
+  State<HadethDetailsScreen> createState() => _HadethDetailsScreenState();
 }
 
-class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
-List<String> verses = [];
+class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
+
 
   @override
   Widget build(BuildContext context) {
-
-    var provider=Provider.of<AppConfigProvider>(context);
-    var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
+    var provider = Provider.of<AppConfigProvider>(context);
+    var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
    var width =MediaQuery.of(context).size.width;
     var height =MediaQuery.of(context).size.height;
-    if(verses.isEmpty) {
-      loadFile(args.index);
-    }
+
     return Stack(
       children: [
         provider.isDarkMode()?
@@ -42,7 +41,7 @@ List<String> verses = [];
         Scaffold(
           appBar: AppBar(
             title: Text(
-              '${args.name}',
+              '${args.title}',
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
@@ -51,31 +50,24 @@ List<String> verses = [];
             height:height*0.9,
             margin: EdgeInsets.only(left: width*0.05,right:width*0.02 ,bottom: height*0.05),
             decoration: BoxDecoration(
+
               color:
               provider.isDarkMode()?
-              MyThemeData.darkPrimary:
+                  MyThemeData.darkPrimary:
               MyThemeData.colorWhite,
               borderRadius: BorderRadius.circular(24),
             ),
             child:
 
-    verses.isEmpty ?
-    Center(child: CircularProgressIndicator()):
 
-            ListView.separated(
-              separatorBuilder:  (context,index){
-    return    Divider(
 
-    color:provider.isDarkMode()?
-        MyThemeData.colorYellow:
-    MyThemeData.lightPrimary,
-    thickness: 2,
-    );
-    },
+            ListView.builder(
+
                 itemBuilder: (context,index){
-              return ItemSuraDetails(text: verses[index],index: index,);
+              return ItemhadethDetails(
+                content: args.content[index],);
             },
-              itemCount:verses.length ,
+              itemCount:args.content.length ,
 
             ),
           ),
@@ -90,15 +82,9 @@ List<String> verses = [];
     // String fileContents = await rootBundle.loadString('assets/files/1.txt');
   String fileContent= await rootBundle.loadString("assets/files/${index+1}.txt");
   List<String> lines =fileContent.split('\n');
-  verses= lines ;
 
   setState(() {
 
   });
   }
-}
-class SuraDetailsArgs {
-  String name ;
-  int index ;
-  SuraDetailsArgs ({required this.name , required this.index});
 }
